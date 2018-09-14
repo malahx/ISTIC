@@ -2,21 +2,24 @@
 
 class Activity {
     -name: String
-    -cost: float
+    -cost: Float
 }
 enum ActivityType {
     SAILING
 }
 abstract class BaseEntity {
-    -id: String
+    -id: Long
     -createdAt: Instant
     -updatedAt: Instant
 }
 class City {
     -name: String
+    -postalCode: Integer
+    -longitude: Float
 }
 class Department {
     -name: String
+    -code: int
 }
 class Person {
     -firstName: String
@@ -34,6 +37,10 @@ BaseEntity <|-- Region
 Activity --> "*" City
 Activity --> "1" ActivityType
 Person --> "1" City
+Person --> "*" City
+Person --> "*" Department
+Person --> "*" Region
 Department "1" <-- City
 Region "1" -- "*" Department
+Person --> "*" Activity
 @enduml

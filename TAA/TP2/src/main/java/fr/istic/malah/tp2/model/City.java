@@ -23,12 +23,12 @@ public class City extends BaseEntity {
     private String name;
 
     @Column(name = POSTAL_CODE)
-    private int postalCode;
+    private Integer postalCode;
 
     @Column(name = LONGITUDE)
-    private float longitude;
+    private Float longitude;
 
     @Column(name = LATITUDE)
-    private float latitude;
+    private Float latitude;
 
 }
