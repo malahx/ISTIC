@@ -2,11 +2,19 @@ package fr.istic.malah.tp2.repository;
 
 import fr.istic.malah.tp2.exception.RepositoryException;
 import fr.istic.malah.tp2.model.BaseEntity;
+import fr.istic.malah.tp2.model.Person;
 import lombok.AllArgsConstructor;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Root;
 import java.util.Map;
+
+import static fr.istic.malah.tp2.config.ModelDataDefinition.NAME;
 
 @AllArgsConstructor
 public abstract class BaseRepository<T extends BaseEntity> implements Repository<T, Long> {
@@ -16,15 +24,27 @@ public abstract class BaseRepository<T extends BaseEntity> implements Repository
     static final String NO_COMMIT = "No commit initialized";
     static final String NO_UPDATE = "No update";
 
-    private Class<T> clazz;
+    protected Class<T> clazz;
 
-    private String table;
+    protected String table;
 
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
     @Override
     public T findById(Long id) {
         return entityManager.find(clazz, id);
+    }
+
+    @Override
+    public T findOneByString(String field, String value) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        ParameterExpression<String> parameter = criteriaBuilder.parameter(String.class);
+        CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(clazz);
+        Root<T> root = criteriaQuery.from(clazz);
+        criteriaQuery.select(root).where(criteriaBuilder.like(root.get(field), parameter));
+        TypedQuery<T> query = entityManager.createQuery(criteriaQuery);
+        query.setParameter(parameter, value);
+        return query.getSingleResult();
     }
 
     @Override

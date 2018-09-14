@@ -7,6 +7,7 @@ import java.util.Map;
 public interface Repository<T extends BaseEntity, U> {
 
     T findById(U id);
+    T findOneByString(String field, String value);
     T save(T object);
     T save(T object, SaveType type);
     T update(U id, Map<String, Object> fields);
