@@ -19,6 +19,7 @@ import java.util.Map;
 import static fr.istic.malah.tp2.TestData.ID;
 import static fr.istic.malah.tp2.TestData.SOME_STRING;
 import static fr.istic.malah.tp2.TestData.somePerson;
+import static fr.istic.malah.tp2.repository.BaseRepository.NO_UPDATE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
@@ -201,12 +202,17 @@ public class BaseRepositoryTest {
 
     @Test
     public void shouldUpdateFields() {
+
         Map<String, Object> fields = new HashMap<>();
         fields.put("field1", SOME_STRING);
         fields.put("field2", SOME_STRING + 1);
 
+        Person person = somePerson();
+
         Query mockQuery = mock(Query.class);
         when(mockEntityManager.createNativeQuery(anyString())).thenReturn(mockQuery);
+        when(mockQuery.executeUpdate()).thenReturn(1);
+        when(mockEntityManager.find(any(), any())).thenReturn(person);
 
         Person update = repository.update(ID, fields);
 
@@ -215,5 +221,26 @@ public class BaseRepositoryTest {
         verify(mockQuery).setParameter("field1", SOME_STRING);
         verify(mockQuery).setParameter("field2", SOME_STRING + 1);
         verify(mockQuery).executeUpdate();
+        verify(mockEntityManager).find(Person.class, ID);
+
+        assertThat(update, notNullValue());
+        assertThat(update, equalTo(person));
+    }
+
+    @Test
+    public void shouldThrownExceptionWhenUpdateFieldsWithout() {
+
+        Map<String, Object> fields = new HashMap<>();
+        fields.put("field1", SOME_STRING);
+        fields.put("field2", SOME_STRING + 1);
+
+        Query mockQuery = mock(Query.class);
+        when(mockEntityManager.createNativeQuery(anyString())).thenReturn(mockQuery);
+        when(mockQuery.executeUpdate()).thenReturn(0);
+
+        thrown.expect(RepositoryException.class);
+        thrown.expectMessage(NO_UPDATE);
+
+        repository.update(ID, fields);
     }
 }

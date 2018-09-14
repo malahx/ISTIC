@@ -14,6 +14,7 @@ public class BaseRepository<T extends BaseEntity> implements Repository<T, Long>
     static final String NO_ID = "No id";
     static final String NO_OBJECT = "No object";
     static final String NO_COMMIT = "No commit initialized";
+    static final String NO_UPDATE = "No update";
 
     private Class<T> clazz;
 
@@ -49,11 +50,13 @@ public class BaseRepository<T extends BaseEntity> implements Repository<T, Long>
         StringBuilder field = new StringBuilder();
         fields.forEach((k, v) -> field.append(k).append("=:").append(k).append(","));
         field.deleteCharAt(field.length() - 1);
-        Query nativeQuery = entityManager.createNativeQuery("UPDATE " + table + " SET " + field + " WHERE id=:id");
-        nativeQuery.setParameter("id", id);
-        fields.forEach(nativeQuery::setParameter);
-        nativeQuery.executeUpdate();
-        return null;
+        Query query = entityManager.createNativeQuery("UPDATE " + table + " SET " + field + " WHERE id=:id");
+        fields.forEach(query::setParameter);
+        query.setParameter("id", id);
+        if (query.executeUpdate() == 0) {
+            throw new RepositoryException(NO_UPDATE);
+        }
+        return entityManager.find(clazz, id);
     }
 
     @Override
