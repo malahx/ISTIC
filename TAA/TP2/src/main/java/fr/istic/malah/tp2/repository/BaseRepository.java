@@ -2,7 +2,6 @@ package fr.istic.malah.tp2.repository;
 
 import fr.istic.malah.tp2.exception.RepositoryException;
 import fr.istic.malah.tp2.model.BaseEntity;
-import fr.istic.malah.tp2.model.Person;
 import lombok.AllArgsConstructor;
 
 import javax.persistence.EntityManager;
@@ -13,8 +12,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 import java.util.Map;
-
-import static fr.istic.malah.tp2.config.ModelDataDefinition.NAME;
 
 @AllArgsConstructor
 public abstract class BaseRepository<T extends BaseEntity> implements Repository<T, Long> {
