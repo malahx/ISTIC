@@ -15,4 +15,7 @@ public interface ModelDataDefinition {
     String LONGITUDE = "longitude";
     String LATITUDE = "latitude";
     String PERSON = "person";
+    String REGION = "region";
+    String DEPARTMENT = "department";
+    String ACTIVITY = "activity";
 }
