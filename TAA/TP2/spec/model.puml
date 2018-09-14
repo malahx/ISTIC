@@ -1,0 +1,39 @@
+@startuml
+
+class Activity {
+    -name: String
+    -cost: float
+}
+enum ActivityType {
+    SAILING
+}
+abstract class BaseEntity {
+    -id: String
+    -createdAt: Instant
+    -updatedAt: Instant
+}
+class City {
+    -name: String
+}
+class Department {
+    -name: String
+}
+class Person {
+    -firstName: String
+    -lastName: String
+}
+class Region {
+    -name: String
+}
+
+BaseEntity <|-- Activity
+BaseEntity <|-- City
+BaseEntity <|-- Department
+BaseEntity <|-- Person
+BaseEntity <|-- Region
+Activity --> "*" City
+Activity --> "1" ActivityType
+Person --> "1" City
+Department "1" <-- City
+Region "1" -- "*" Department
+@enduml
