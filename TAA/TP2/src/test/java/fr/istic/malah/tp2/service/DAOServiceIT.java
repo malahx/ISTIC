@@ -1,6 +1,6 @@
 package fr.istic.malah.tp2.service;
 
-import fr.istic.malah.tp2.EntityManagerHelper;
+import fr.istic.malah.tp2.repository.utils.EntityManagerHelper;
 import fr.istic.malah.tp2.model.Person;
 import org.junit.Test;
 

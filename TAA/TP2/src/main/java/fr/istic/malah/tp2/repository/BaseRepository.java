@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import java.util.Map;
 
 @AllArgsConstructor
-public class BaseRepository<T extends BaseEntity> implements Repository<T, Long> {
+public abstract class BaseRepository<T extends BaseEntity> implements Repository<T, Long> {
 
     static final String NO_ID = "No id";
     static final String NO_OBJECT = "No object";

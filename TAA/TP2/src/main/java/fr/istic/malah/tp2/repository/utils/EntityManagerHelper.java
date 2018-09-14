@@ -1,4 +1,4 @@
-package fr.istic.malah.tp2;
+package fr.istic.malah.tp2.repository.utils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

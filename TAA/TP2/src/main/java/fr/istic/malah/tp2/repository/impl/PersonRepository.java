@@ -1,6 +1,7 @@
-package fr.istic.malah.tp2.repository;
+package fr.istic.malah.tp2.repository.impl;
 
 import fr.istic.malah.tp2.model.Person;
+import fr.istic.malah.tp2.repository.BaseRepository;
 
 import javax.persistence.EntityManager;
 

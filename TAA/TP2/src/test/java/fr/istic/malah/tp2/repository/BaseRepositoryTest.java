@@ -2,6 +2,7 @@ package fr.istic.malah.tp2.repository;
 
 import fr.istic.malah.tp2.exception.RepositoryException;
 import fr.istic.malah.tp2.model.Person;
+import fr.istic.malah.tp2.repository.impl.PersonRepository;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
