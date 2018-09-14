@@ -1,4 +1,4 @@
-package fr.istic.malah.tp2.model;
+package fr.istic.malah.tp2.config;
 
 public interface ModelDataDefinition {
     String CREATED_AT = "created_at";

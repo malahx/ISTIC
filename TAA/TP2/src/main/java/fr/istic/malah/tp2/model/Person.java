@@ -8,9 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import static fr.istic.malah.tp2.model.ModelDataDefinition.FIRST_NAME;
-import static fr.istic.malah.tp2.model.ModelDataDefinition.LAST_NAME;
-import static fr.istic.malah.tp2.model.ModelDataDefinition.PERSON;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.FIRST_NAME;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.LAST_NAME;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.PERSON;
 
 @Data
 @Entity

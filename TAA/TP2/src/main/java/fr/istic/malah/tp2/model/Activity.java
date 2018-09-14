@@ -12,10 +12,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import java.util.List;
 
-import static fr.istic.malah.tp2.model.ModelDataDefinition.ACTIVITY_TYPE;
-import static fr.istic.malah.tp2.model.ModelDataDefinition.CITIES;
-import static fr.istic.malah.tp2.model.ModelDataDefinition.COST;
-import static fr.istic.malah.tp2.model.ModelDataDefinition.NAME;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.ACTIVITY_TYPE;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.CITIES;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.COST;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.NAME;
 
 @Data
 @EqualsAndHashCode(callSuper = true)

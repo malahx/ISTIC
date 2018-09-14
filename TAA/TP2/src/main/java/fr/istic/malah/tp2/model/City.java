@@ -7,11 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import static fr.istic.malah.tp2.model.ModelDataDefinition.CITY;
-import static fr.istic.malah.tp2.model.ModelDataDefinition.LATITUDE;
-import static fr.istic.malah.tp2.model.ModelDataDefinition.LONGITUDE;
-import static fr.istic.malah.tp2.model.ModelDataDefinition.NAME;
-import static fr.istic.malah.tp2.model.ModelDataDefinition.POSTAL_CODE;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.CITY;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.LATITUDE;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.LONGITUDE;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.NAME;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.POSTAL_CODE;
 
 @Data
 @Entity

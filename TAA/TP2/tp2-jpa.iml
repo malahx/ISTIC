@@ -7,6 +7,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="dev" />
+          <factory-entry name="mariadb" />
           <factory-entry name="mysql" />
           <factory-entry name="prod" />
         </datasource-mapping>

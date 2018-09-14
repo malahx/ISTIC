@@ -2,12 +2,19 @@ package fr.istic.malah.tp2.repository;
 
 import fr.istic.malah.tp2.model.BaseEntity;
 
-public interface Repository<T extends BaseEntity> {
+import java.util.Map;
 
-    T findById(long id);
+public interface Repository<T extends BaseEntity, U> {
+
+    T findById(U id);
     T save(T object);
     T save(T object, SaveType type);
-    boolean delete(T object);
+    T update(U id, Map<String, Object> fields);
+    void delete(T object);
+    void delete(U id);
+
+    void commit();
+    void rollback();
 
     enum SaveType {
         COMMIT,

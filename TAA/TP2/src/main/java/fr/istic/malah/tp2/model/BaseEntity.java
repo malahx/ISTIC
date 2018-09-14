@@ -11,8 +11,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
 
-import static fr.istic.malah.tp2.model.ModelDataDefinition.CREATED_AT;
-import static fr.istic.malah.tp2.model.ModelDataDefinition.UPDATED_AT;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.CREATED_AT;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.UPDATED_AT;
 
 @MappedSuperclass
 public abstract class BaseEntity {

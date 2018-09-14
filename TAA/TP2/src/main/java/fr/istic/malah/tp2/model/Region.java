@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import static fr.istic.malah.tp2.model.ModelDataDefinition.NAME;
+import static fr.istic.malah.tp2.config.ModelDataDefinition.NAME;
 
 @Data
 @Entity
