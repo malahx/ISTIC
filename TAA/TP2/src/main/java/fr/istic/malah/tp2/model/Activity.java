@@ -12,11 +12,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
-import static fr.istic.malah.tp2.config.ModelDataDefinition.ACTIVITY;
-import static fr.istic.malah.tp2.config.ModelDataDefinition.ACTIVITY_TYPE;
-import static fr.istic.malah.tp2.config.ModelDataDefinition.CITIES;
-import static fr.istic.malah.tp2.config.ModelDataDefinition.COST;
-import static fr.istic.malah.tp2.config.ModelDataDefinition.NAME;
+import static fr.istic.malah.tp2.config.DAODataDefinition.ACTIVITY;
+import static fr.istic.malah.tp2.config.DAODataDefinition.ACTIVITY_TYPE;
+import static fr.istic.malah.tp2.config.DAODataDefinition.CITIES;
+import static fr.istic.malah.tp2.config.DAODataDefinition.COST;
+import static fr.istic.malah.tp2.config.DAODataDefinition.NAME;
+import static fr.istic.malah.tp2.config.DAODataDefinition.OUT_DOOR;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -30,6 +31,9 @@ public class Activity extends BaseEntity {
 
     @Column(name = COST)
     private Float cost;
+
+    @Column(name = OUT_DOOR)
+    private boolean outDoor;
 
     @Enumerated(EnumType.STRING)
     @Column(name = ACTIVITY_TYPE)

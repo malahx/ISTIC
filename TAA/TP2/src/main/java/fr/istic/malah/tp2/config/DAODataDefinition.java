@@ -1,6 +1,6 @@
 package fr.istic.malah.tp2.config;
 
-public interface ModelDataDefinition {
+public interface DAODataDefinition {
     String CREATED_AT = "created_at";
     String UPDATED_AT = "updated_at";
     String ACTIVITY_TYPE = "activity_type";
@@ -14,8 +14,9 @@ public interface ModelDataDefinition {
     String COST = "cost";
     String LONGITUDE = "longitude";
     String LATITUDE = "latitude";
-    String PERSON = "person";
+    String USER = "person";
     String REGION = "region";
     String DEPARTMENT = "department";
     String ACTIVITY = "activity";
+    String OUT_DOOR = "out_door";
 }

@@ -8,11 +8,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import static fr.istic.malah.tp2.config.ModelDataDefinition.CITY;
-import static fr.istic.malah.tp2.config.ModelDataDefinition.LATITUDE;
-import static fr.istic.malah.tp2.config.ModelDataDefinition.LONGITUDE;
-import static fr.istic.malah.tp2.config.ModelDataDefinition.NAME;
-import static fr.istic.malah.tp2.config.ModelDataDefinition.POSTAL_CODE;
+import static fr.istic.malah.tp2.config.DAODataDefinition.CITY;
+import static fr.istic.malah.tp2.config.DAODataDefinition.LATITUDE;
+import static fr.istic.malah.tp2.config.DAODataDefinition.LONGITUDE;
+import static fr.istic.malah.tp2.config.DAODataDefinition.NAME;
+import static fr.istic.malah.tp2.config.DAODataDefinition.POSTAL_CODE;
 
 @Data
 @EqualsAndHashCode(callSuper = true)

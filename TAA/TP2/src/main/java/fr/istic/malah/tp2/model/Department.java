@@ -8,9 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import static fr.istic.malah.tp2.config.ModelDataDefinition.CODE;
-import static fr.istic.malah.tp2.config.ModelDataDefinition.DEPARTMENT;
-import static fr.istic.malah.tp2.config.ModelDataDefinition.NAME;
+import static fr.istic.malah.tp2.config.DAODataDefinition.CODE;
+import static fr.istic.malah.tp2.config.DAODataDefinition.DEPARTMENT;
+import static fr.istic.malah.tp2.config.DAODataDefinition.NAME;
 
 @Data
 @EqualsAndHashCode(callSuper = true)

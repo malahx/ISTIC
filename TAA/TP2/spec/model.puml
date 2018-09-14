@@ -3,6 +3,7 @@
 class Activity {
     -name: String
     -cost: Float
+    -duration: int
 }
 enum ActivityType {
     SAILING
@@ -11,36 +12,53 @@ abstract class BaseEntity {
     -id: Long
     -createdAt: Instant
     -updatedAt: Instant
+    -deletedAt: Instant
 }
 class City {
     -name: String
     -postalCode: Integer
     -longitude: Float
+    -latitude: Float
 }
 class Department {
     -name: String
     -code: int
 }
-class Person {
+class User {
     -firstName: String
     -lastName: String
+    -login: String
+    -email: String
+    -password: String
+}
+enum Role {
+    ADMIN,
+    USER
 }
 class Region {
     -name: String
+}
+class Event {
+    -canceled: boolean
+    -date: Instant
 }
 
 BaseEntity <|-- Activity
 BaseEntity <|-- City
 BaseEntity <|-- Department
-BaseEntity <|-- Person
+BaseEntity <|-- User
 BaseEntity <|-- Region
+BaseEntity <|-- Event
 Activity --> "*" City
 Activity --> "1" ActivityType
-Person --> "1" City
-Person --> "*" City
-Person --> "*" Department
-Person --> "*" Region
+User --> "*" City
+User --> "*" Department
+User --> "*" Region
 Department "1" <-- City
-Region "1" -- "*" Department
-Person --> "*" Activity
+Region "1" <-- Department
+User --> "*" Activity
+Event --> "1" City
+Event --> "1" Activity
+User --> "*" Event
+User --> "1" Role
 @enduml

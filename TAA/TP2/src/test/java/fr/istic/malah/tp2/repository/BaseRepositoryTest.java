@@ -1,8 +1,8 @@
 package fr.istic.malah.tp2.repository;
 
 import fr.istic.malah.tp2.exception.RepositoryException;
-import fr.istic.malah.tp2.model.Person;
-import fr.istic.malah.tp2.repository.impl.PersonRepository;
+import fr.istic.malah.tp2.model.User;
+import fr.istic.malah.tp2.repository.impl.UserRepository;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 import static fr.istic.malah.tp2.TestData.ID;
 import static fr.istic.malah.tp2.TestData.SOME_STRING;
-import static fr.istic.malah.tp2.TestData.somePerson;
+import static fr.istic.malah.tp2.TestData.someUser;
 import static fr.istic.malah.tp2.repository.BaseRepository.NO_UPDATE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -33,7 +33,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class BaseRepositoryTest {
 
-    private PersonRepository repository;
+    private UserRepository repository;
 
     @Mock
     private EntityManager mockEntityManager;
@@ -43,51 +43,51 @@ public class BaseRepositoryTest {
 
     @Before
     public void setUp() {
-        repository = new PersonRepository(mockEntityManager);
+        repository = new UserRepository(mockEntityManager);
     }
 
     @Test
     public void shouldSaveAPerson() {
 
-        Person person = somePerson();
+        User user = someUser();
 
-        Person result = repository.save(person);
+        User result = repository.save(user);
 
-        verify(mockEntityManager).persist(person);
+        verify(mockEntityManager).persist(user);
 
-        assertThat(result, equalTo(person));
+        assertThat(result, equalTo(user));
     }
 
     @Test
     public void shouldSaveAPersonWithBegin() {
 
-        Person person = somePerson();
+        User user = someUser();
 
         EntityTransaction mockTransaction = mock(EntityTransaction.class);
         when(mockEntityManager.getTransaction()).thenReturn(mockTransaction);
 
-        Person result = repository.save(person, Repository.SaveType.BEGIN);
+        User result = repository.save(user, Repository.SaveType.BEGIN);
 
-        verify(mockEntityManager).persist(person);
+        verify(mockEntityManager).persist(user);
         verify(mockTransaction).begin();
 
-        assertThat(result, equalTo(person));
+        assertThat(result, equalTo(user));
     }
 
     @Test
     public void shouldSaveAPersonWithCommit() {
 
-        Person person = somePerson();
+        User user = someUser();
 
         EntityTransaction mockTransaction = mock(EntityTransaction.class);
         when(mockEntityManager.getTransaction()).thenReturn(mockTransaction);
 
-        Person result = repository.save(person, Repository.SaveType.COMMIT);
+        User result = repository.save(user, Repository.SaveType.COMMIT);
 
-        verify(mockEntityManager).persist(person);
+        verify(mockEntityManager).persist(user);
         verify(mockTransaction).commit();
 
-        assertThat(result, equalTo(person));
+        assertThat(result, equalTo(user));
     }
 
     @Test
@@ -143,15 +143,15 @@ public class BaseRepositoryTest {
     @Test
     public void shouldFindById() {
 
-        Person person = somePerson();
-        when(mockEntityManager.find(any(), any())).thenReturn(person);
+        User user = someUser();
+        when(mockEntityManager.find(any(), any())).thenReturn(user);
 
-        Person result = repository.findById(ID);
+        User result = repository.findById(ID);
 
-        verify(mockEntityManager).find(Person.class, ID);
+        verify(mockEntityManager).find(User.class, ID);
 
         assertThat(result, notNullValue());
-        assertThat(result, equalTo(person));
+        assertThat(result, equalTo(user));
     }
 
     @Test
@@ -164,7 +164,7 @@ public class BaseRepositoryTest {
 
         repository.delete(ID);
 
-        verify(mockEntityManager).createQuery("DELETE FROM Person o WHERE o.id=:id");
+        verify(mockEntityManager).createQuery("DELETE FROM User o WHERE o.id=:id");
         verify(mockQuery).setParameter("id", ID);
         verify(mockQuery).executeUpdate();
     }
@@ -183,22 +183,22 @@ public class BaseRepositoryTest {
     @Test
     public void shouldDeleteByObject() {
 
-        Person person = somePerson();
+        User user = someUser();
 
-        repository.delete(person);
+        repository.delete(user);
 
-        verify(mockEntityManager).remove(person);
+        verify(mockEntityManager).remove(user);
     }
 
     @Test
     public void shouldThrowExceptionWhenDeleteANullObject() {
 
-        Person person = null;
+        User user = null;
 
         thrown.expect(RepositoryException.class);
         thrown.expectMessage(BaseRepository.NO_OBJECT);
 
-        repository.delete(person);
+        repository.delete(user);
     }
 
     @Test
@@ -208,24 +208,24 @@ public class BaseRepositoryTest {
         fields.put("field1", SOME_STRING);
         fields.put("field2", SOME_STRING + 1);
 
-        Person person = somePerson();
+        User user = someUser();
 
         Query mockQuery = mock(Query.class);
         when(mockEntityManager.createNativeQuery(anyString())).thenReturn(mockQuery);
         when(mockQuery.executeUpdate()).thenReturn(1);
-        when(mockEntityManager.find(any(), any())).thenReturn(person);
+        when(mockEntityManager.find(any(), any())).thenReturn(user);
 
-        Person update = repository.update(ID, fields);
+        User update = repository.update(ID, fields);
 
         verify(mockEntityManager).createNativeQuery("UPDATE person SET field1=:field1,field2=:field2 WHERE id=:id");
         verify(mockQuery).setParameter("id", ID);
         verify(mockQuery).setParameter("field1", SOME_STRING);
         verify(mockQuery).setParameter("field2", SOME_STRING + 1);
         verify(mockQuery).executeUpdate();
-        verify(mockEntityManager).find(Person.class, ID);
+        verify(mockEntityManager).find(User.class, ID);
 
         assertThat(update, notNullValue());
-        assertThat(update, equalTo(person));
+        assertThat(update, equalTo(user));
     }
 
     @Test

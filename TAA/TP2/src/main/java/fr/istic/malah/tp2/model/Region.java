@@ -8,8 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import static fr.istic.malah.tp2.config.ModelDataDefinition.NAME;
-import static fr.istic.malah.tp2.config.ModelDataDefinition.REGION;
+import static fr.istic.malah.tp2.config.DAODataDefinition.NAME;
+import static fr.istic.malah.tp2.config.DAODataDefinition.REGION;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
