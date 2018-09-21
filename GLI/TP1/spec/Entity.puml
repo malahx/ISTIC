@@ -1,0 +1,14 @@
+@startuml
+
+class Item {
+    -name: String
+    -description: String
+    -value: float
+}
+class Title {
+    -name: String
+}
+
+"Title" --> "*" Item
+
+@enduml
