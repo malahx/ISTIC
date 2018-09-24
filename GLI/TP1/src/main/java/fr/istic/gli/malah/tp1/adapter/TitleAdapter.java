@@ -31,4 +31,12 @@ public interface TitleAdapter extends Observer<Title> {
     float getValues(int i);
 
     double total();
+
+    String getTitle();
+
+    String getTitle(int i);
+
+    String getUnit();
+
+    String getDescription(int i);
 }

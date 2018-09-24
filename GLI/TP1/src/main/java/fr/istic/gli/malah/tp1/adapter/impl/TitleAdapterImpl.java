@@ -1,6 +1,5 @@
 package fr.istic.gli.malah.tp1.adapter.impl;
 
-import fr.istic.gli.malah.tp1.adapter.ItemAdapter;
 import fr.istic.gli.malah.tp1.adapter.TitleAdapter;
 import fr.istic.gli.malah.tp1.model.Item;
 import fr.istic.gli.malah.tp1.model.Title;
@@ -62,5 +61,25 @@ public class TitleAdapterImpl extends ObserverImpl<Title> implements TitleAdapte
     @Override
     public double total() {
         return title.getItems().stream().mapToDouble(Item::getValue).sum();
+    }
+
+    @Override
+    public String getTitle() {
+        return title.getName();
+    }
+
+    @Override
+    public String getTitle(int i) {
+        return title.getItems().get(i).getName();
+    }
+
+    @Override
+    public String getUnit() {
+        return title.getUnit();
+    }
+
+    @Override
+    public String getDescription(int i) {
+        return title.getItems().get(i).getDescription();
     }
 }

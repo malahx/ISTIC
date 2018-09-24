@@ -9,6 +9,8 @@ import java.util.List;
 public class Title {
     private String name;
     private List<Item> items;
+    private String unit;
+
     public void addItem(Item item) {
         if (items == null) {
             items = new ArrayList<>();

@@ -2,6 +2,8 @@ package fr.istic.gli.malah.tp1.view;
 
 import fr.istic.gli.malah.tp1.adapter.Observer;
 import fr.istic.gli.malah.tp1.adapter.TitleAdapter;
+import fr.istic.gli.malah.tp1.controller.CamembertController;
+import fr.istic.gli.malah.tp1.model.Title;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -28,10 +30,9 @@ import java.awt.geom.Rectangle2D;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 import java.util.ArrayList;
-import java.util.Observable;
 
 public class CamembertView extends JComponent implements MouseListener,
-        MouseMotionListener, Observer.Listener {
+        MouseMotionListener, Observer.Listener<Title> {
 
     static final Point2D pieCenter = new Point2D.Double(300, 300);
     static final Dimension pieSize = new Dimension(300, 300);
@@ -54,10 +55,8 @@ public class CamembertView extends JComponent implements MouseListener,
 
     Arc2D center;
 
-    // a link to the controller interface
-    ///Controller controller;
+    CamembertController controller;
 
-    // a link to the Model interface
     TitleAdapter model;
 
     double startingAngle;
@@ -75,27 +74,22 @@ public class CamembertView extends JComponent implements MouseListener,
     Font fontCenter;
     Font fontTags;
 
-    public CamembertView(TitleAdapter m) {
-        model = m;
+    public CamembertView(TitleAdapter titleAdapter) {
+        model = titleAdapter;
         startingAngle = 0.0;
-
-
         model.addListener(this);
-
-        arcs = new ArrayList<Arc2D>();
-        selectedArcs = new ArrayList<Arc2D>();
-
+        addMouseListener(this);
+        arcs = new ArrayList<>();
+        selectedArcs = new ArrayList<>();
         setSize(600, 600);
-
         buildGraphics();
-
     }
 
     public void buildGraphics() {
 
         // create previous button
-        int x1Points[] = { 20, 40, 20 };
-        int y1Points[] = { 25, 45, 45 };
+        int x1Points[] = {20, 40, 20};
+        int y1Points[] = {25, 45, 45};
         previous = new GeneralPath(GeneralPath.WIND_EVEN_ODD, x1Points.length);
         previous.moveTo(x1Points[0], y1Points[0]);
 
@@ -107,8 +101,8 @@ public class CamembertView extends JComponent implements MouseListener,
         previous.closePath();
 
         // create next button
-        int x1PointsN[] = { 25, 45, 45 };
-        int y1PointsN[] = { 20, 20, 40 };
+        int x1PointsN[] = {25, 45, 45};
+        int y1PointsN[] = {20, 20, 40};
         next = new GeneralPath(GeneralPath.WIND_EVEN_ODD, x1PointsN.length);
         next.moveTo(x1PointsN[0], y1PointsN[0]);
 
@@ -162,36 +156,8 @@ public class CamembertView extends JComponent implements MouseListener,
 
     }
 
-    public void setController(CamembertController2 c) {
+    public void setController(CamembertController c) {
         controller = c;
-    }
-
-    public void deSelect() {
-        controller.setSelected(false);
-        paint(getGraphics());
-    }
-
-    public void nextPie() {
-        controller.setSelectedPie((controller.getSelectedPie() + 1)
-                % model.size());
-        System.out.println("Selected pie" + controller.getSelectedPie());
-        paint(getGraphics());
-
-    }
-
-    public void previousPie() {
-        controller.setSelectedPie((controller.getSelectedPie() - 1)
-                % model.size());
-        System.out.println("Selected pie" + controller.getSelectedPie());
-
-        paint(getGraphics());
-    }
-
-    public void selectPie(int i) {
-        controller.setSelected(true);
-        controller.setSelectedPie(i);
-        System.out.println("Selected pie" + i);
-        paint(getGraphics());
     }
 
     private void drawPreviousNextButtons(Graphics2D g2d) {
@@ -237,7 +203,6 @@ public class CamembertView extends JComponent implements MouseListener,
         g2d.fill(rect2D);
 
         if (controller.isSelected()) {
-
             drawPreviousNextButtons(g2d);
         }
 
@@ -790,15 +755,15 @@ public class CamembertView extends JComponent implements MouseListener,
         int oldLast = 0;
 
         // pour le test: creation du controller
-        // Controller controller;
+//         CamembertController controller;
 
 
         // display layout
         GridLayout layout = new GridLayout(1, 2);
 
-        window.getContentPane().add(controller.getView());
-        window.getContentPane().add(table);
-        window.getContentPane().add(addButton);
+//        window.getContentPane().add(controller.getView());
+//        window.getContentPane().add(table);
+//        window.getContentPane().add(addButton);
 
         window.setLayout(layout);
         window.pack();
