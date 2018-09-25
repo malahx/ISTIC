@@ -1,23 +1,9 @@
-function PlayerGenerator(name, attack, defense) {
-    function displayMyPlayerInfo() {
-        console.log(`My name is ${this.name}, I have ${this.attack} attack, ${this.defense} defense and ${this.hp} health points.`);
-    }
-    return {
-        name,
-        attack,
-        defense,
-        hp: 100,
-        displayMyPlayerInfo
-    }
-}
+let gen = require('./playerGenerator.js');
+let playerUtils = require('./playerUtils.js');
 
-function getMyPlayerRatio(player, n) {
-    return player.attack - n;
-}
-
-let player1 = new PlayerGenerator("Jean", 30, 5);
-let player2 = new PlayerGenerator("Pierre", 15, 10);
+let player1 = new gen.PlayerGenerator("Jean", 30, 5);
+let player2 = new gen.PlayerGenerator("Pierre", 15, 10);
 player1.displayMyPlayerInfo();
 player2.displayMyPlayerInfo();
 
-console.log(getMyPlayerRatio(player1, player2.defense));
+console.log(playerUtils.getMyPlayerRatio(player1, player2.defense));
