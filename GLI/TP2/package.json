@@ -8,5 +8,9 @@
   },
   "author": "Malah",
   "license": "GPL-3.0",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
 }

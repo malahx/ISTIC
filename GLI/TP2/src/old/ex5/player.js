@@ -6,15 +6,14 @@ class Player {
         this.attack = attack;
         this.defense = defense;
         this.hp = 100;
-        this.factor = 1;
     }
 
     fight(enemy) {
-        playerUtils.fight.call(this, enemy);
+        playerUtils.fight(enemy);
     }
 
     displayMyPlayerInfo() {
-        playerUtils.displayMyPlayerInfo.call(this);
+        playerUtils.displayMyPlayerInfo();
     }
 }
 
