@@ -6,7 +6,8 @@ function PlayerGenerator(name, attack, defense) {
         attack,
         defense,
         hp: 100,
-        displayMyPlayerInfo: playerUtils.displayMyPlayerInfo
+        displayMyPlayerInfo: playerUtils.displayMyPlayerInfo,
+        fight: playerUtils.fight
     }
 }
 
