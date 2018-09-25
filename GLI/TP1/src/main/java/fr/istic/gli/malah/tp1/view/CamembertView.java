@@ -743,35 +743,6 @@ public class CamembertView extends JComponent implements MouseListener,
     }
 
 
-    public static void main(String[] a) {
-        JFrame window = new JFrame();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setBounds(30, 30, 400, 400);
-
-        // pour le test: creation du modele et insertion des données
-        // Model model;
-
-        int oldFirst = 0;
-        int oldLast = 0;
-
-        // pour le test: creation du controller
-//         CamembertController controller;
-
-
-        // display layout
-        GridLayout layout = new GridLayout(1, 2);
-
-//        window.getContentPane().add(controller.getView());
-//        window.getContentPane().add(table);
-//        window.getContentPane().add(addButton);
-
-        window.setLayout(layout);
-        window.pack();
-        window.setVisible(true);
-        // window.pack();
-    }
-
-
     @Override
     public void fire(Observer.Event event) {
         buildGraphics();

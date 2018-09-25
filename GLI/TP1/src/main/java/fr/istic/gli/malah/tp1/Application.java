@@ -38,7 +38,7 @@ public class Application {
         window.setBounds(30, 30, 400, 400);
         GridLayout layout = new GridLayout(1, 2);
         window.getContentPane().add(component);
-//        window.getContentPane().add(table);
+        window.getContentPane().add(table);
 //        window.getContentPane().add(addButton)
 
         window.setLayout(layout);
