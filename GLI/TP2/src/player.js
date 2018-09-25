@@ -9,11 +9,11 @@ class Player {
     }
 
     fight(enemy) {
-        playerUtils.fight(enemy);
+        playerUtils.fight.call(this, enemy);
     }
 
     displayMyPlayerInfo() {
-        playerUtils.displayMyPlayerInfo();
+        playerUtils.displayMyPlayerInfo.call(this);
     }
 }
 
