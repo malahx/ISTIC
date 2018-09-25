@@ -1,7 +1,7 @@
 let request = require('request-promise');
 
 function displayMyPlayerInfo() {
-    console.log(`My name is ${this.name}, I have ${this.attack} attack, ${this.defense} defense and ${this.hp} health points, ${this.factor} luck point`);
+    console.log(`My name is ${this.name}, I have ${this.attack} attack, ${this.defense} defense and ${this.hp} health points, ${this.factor} luck points`);
 }
 
 function getMyPlayerRatio(player, n) {
@@ -74,7 +74,7 @@ function random(data) {
         const u = url(data.randoms !== undefined && data.randoms.length > 0 ? Math.round(1.2 * last) : 100);
         request(u).then(r => {
             data.randoms.push(parseInt(r.trim()));
-            console.log(data.randoms);
+            console.log(data);
             resolve(data)
         });
     });
