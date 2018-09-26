@@ -1,20 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
-import { AppComponent } from './app.component';
-import { PoksearchComponent } from './poksearch/poksearch.component';
+import {AppComponent} from './app.component';
+import {PokeSearchComponent} from './poke-search/poke-search.component';
+import {FilterPokemonPipePipe} from './filter/filter-pokemon--pipe.pipe';
+import {PokeApiService} from "./service/poke-api.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
-    PoksearchComponent
+    PokeSearchComponent,
+    FilterPokemonPipePipe
   ],
   imports: [
     FormsModule,
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [PokeApiService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

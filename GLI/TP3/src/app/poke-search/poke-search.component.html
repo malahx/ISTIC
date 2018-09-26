@@ -1,0 +1,9 @@
+<input [(ngModel)]="id" type="text"/><br/>
+<input [(ngModel)]="id" type="text" readonly/><br/>
+Filter: <input [(ngModel)]="pokeFilter" type="text"/><br/>
+<select [(ngModel)]="selectedPoke">
+  <option *ngFor="let pokemon of pokemons | filterPokemonPipe: 'name': pokeFilter" value="{{pokemon.entry_number}}">
+    {{pokemon.pokemon_species.name}}
+  </option>
+</select>
+<button (click)="pushOk()">OK</button>
