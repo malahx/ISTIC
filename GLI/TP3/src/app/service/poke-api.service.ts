@@ -8,6 +8,7 @@ export class PokeApiService {
 
   static readonly URL: string = "https://pokeapi.co/";
   static readonly POKEMONS: string = "api/v2/pokedex/1/";
+  static readonly POKEMON: string = "api/v2/pokemon/";
 
   private httpClient: HttpClient = null;
 
@@ -17,5 +18,9 @@ export class PokeApiService {
 
   getPokemons() {
     return this.httpClient.get(`${PokeApiService.URL}${PokeApiService.POKEMONS}`)
+  }
+
+  getPokemon(id: number) {
+    return this.httpClient.get(`${PokeApiService.URL}${PokeApiService.POKEMON}${id}/`)
   }
 }

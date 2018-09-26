@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PokeApiService} from "../service/poke-api.service";
-import {Pokemon} from "../model/pokemon";
-import {PokemonsResponse} from "../model/pokemons-response";
+import {Pokemons} from "../model/pokemons/pokemons";
+import {PokemonsResponse} from "../model/pokemons/pokemons-response";
 
 @Component({
   selector: 'app-poke-search',
@@ -10,9 +10,9 @@ import {PokemonsResponse} from "../model/pokemons-response";
 })
 export class PokeSearchComponent implements OnInit {
 
-  id: string = '';
-  pokemons: Array<Pokemon> = [];
-  selectedPoke: Pokemon = null;
+  id: number = 1;
+  pokemons: Array<Pokemons> = [];
+  selectedPoke: number = 1;
   pokeFilter: string = '';
 
   constructor(pokeApiService: PokeApiService) {
@@ -25,7 +25,7 @@ export class PokeSearchComponent implements OnInit {
   }
 
   pushOk() {
-    console.log(this.id);
+    this.id = this.selectedPoke;
   }
 
 }

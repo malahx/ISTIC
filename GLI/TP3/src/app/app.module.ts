@@ -7,12 +7,14 @@ import {PokeSearchComponent} from './poke-search/poke-search.component';
 import {FilterPokemonPipePipe} from './filter/filter-pokemon--pipe.pipe';
 import {PokeApiService} from "./service/poke-api.service";
 import {HttpClientModule} from "@angular/common/http";
+import { PokeInfoComponent } from './poke-info/poke-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokeSearchComponent,
-    FilterPokemonPipePipe
+    FilterPokemonPipePipe,
+    PokeInfoComponent
   ],
   imports: [
     FormsModule,
