@@ -1,4 +1,4 @@
-let playerUtils = require('./playerUtils.js');
+const playerUtils = require('./playerUtils.js');
 
 class Player {
     constructor(name, attack, defense) {
