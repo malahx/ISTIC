@@ -14,7 +14,7 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {user: "", waiting: true};
+        this.state = {user: ""};
         this.users = fakeUsers;
     }
 
@@ -35,7 +35,7 @@ class App extends Component {
             <div className="App">
                 <Header className="App-header" users={this.users} setFilter={this.setFilter}/>
                 <div className="hidden-header"/>
-                <List users={this.users} costs={filteredCosts}/> : <span className={"icon-span4"}/>
+                <List users={this.users} costs={filteredCosts}/>
             </div>
         );
     }
