@@ -1,15 +1,28 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
 import './App.css';
 import Header from './component/header';
 import {fakeUsers} from './fake/data';
 import MyList from "./component/list";
-import getCosts from "./storage/costStorage";
+import {addCost} from "./reduce/storeAction";
 
 class App extends Component {
 
+    static mapStateToProps(state) {
+        return ({costs: state.costs})
+    }
+
+    static mapDispatchToProps(dispatch) {
+        return {
+            handleAddCost: (paidBy, title, amount) => {
+                dispatch(addCost(paidBy, title, amount))
+            }
+        }
+    }
+
     constructor(props) {
         super(props);
-        this.state = {user: "", costs: getCosts()};
+        this.state = {user: ""};
         this.users = fakeUsers;
     }
 
@@ -17,24 +30,16 @@ class App extends Component {
         this.setState({user});
     };
 
-    addCost = (cost) => {
-        this.setState(state => {
-            state.costs.push(cost);
-            localStorage.setItem("costs", JSON.stringify(state.costs));
-            return state;
-        });
-    };
-
     render() {
-        const filteredCosts = this.state.costs.filter(c => this.state.user === "" || c.paidBy === this.state.user);
+        const filteredCosts = this.props.costs.filter(c => this.state.user === "" || c.paidBy === this.state.user);
         return (
             <div className="App">
                 <Header className="App-header" users={this.users} setFilter={this.setFilter}/>
                 <div className="hidden-header"/>
-                <MyList addCost={this.addCost} users={this.users} costs={filteredCosts}/>
+                <MyList addCost={this.props.handleAddCost} users={this.users} costs={filteredCosts}/>
             </div>
         );
     }
 }
 
-export default App;
+export default connect(App.mapStateToProps, App.mapDispatchToProps)(App);

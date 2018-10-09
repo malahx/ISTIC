@@ -7,7 +7,7 @@ export default class Footer extends Component {
         return (
             <div className="footer">
                 <span>TOTAL EXPENSES</span>
-                <span>{costs.map(c => c.amount).reduce((t, c) => t += parseInt(c))} €</span>
+                {costs && costs.length > 0 && <span>{costs.map(c => c.amount).reduce((t, c) => t += parseInt(c))} €</span>}
             </div>
         )
     }
