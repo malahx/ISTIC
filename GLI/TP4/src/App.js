@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 import './App.css';
 import Header from './component/header';
 import {fakeUsers} from './fake/data';
-import MyList from "./component/list";
-import {addCost} from "./reduce/storeAction";
+import List from "./component/list";
+import {getStoreCosts} from "./reduce/storeAction";
 
 class App extends Component {
 
@@ -12,34 +12,33 @@ class App extends Component {
         return ({costs: state.costs})
     }
 
-    static mapDispatchToProps(dispatch) {
-        return {
-            handleAddCost: (paidBy, title, amount) => {
-                dispatch(addCost(paidBy, title, amount))
-            }
-        }
-    }
-
     constructor(props) {
         super(props);
-        this.state = {user: ""};
+        this.state = {user: "", waiting: true};
         this.users = fakeUsers;
     }
 
+    componentDidMount() {
+        getStoreCosts();
+    }
+
     setFilter = (user) => {
-        this.setState({user});
+        this.setState((state) => {
+            return {...state, user}
+        });
     };
 
     render() {
-        const filteredCosts = this.props.costs.filter(c => this.state.user === "" || c.paidBy === this.state.user);
+        const {user} = this.state;
+        const filteredCosts = this.props.costs.filter(c => user === "" || c.paidBy === user);
         return (
             <div className="App">
                 <Header className="App-header" users={this.users} setFilter={this.setFilter}/>
                 <div className="hidden-header"/>
-                <MyList addCost={this.props.handleAddCost} users={this.users} costs={filteredCosts}/>
+                <List users={this.users} costs={filteredCosts}/> : <span className={"icon-span4"}/>
             </div>
         );
     }
 }
 
-export default connect(App.mapStateToProps, App.mapDispatchToProps)(App);
+export default connect(App.mapStateToProps, null)(App);

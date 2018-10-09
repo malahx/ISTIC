@@ -1,14 +1,15 @@
-import {ADD_COST} from "./storeAction";
-import getCosts from "../storage/costStorage";
+import {ADD_COST_SUCCESS, GET_COSTS_SUCCESS, REM_COST_SUCCESS} from "./storeAction";
 
-function costs(state = getCosts(), action) {
+function costs(costs = [], action) {
     switch (action.type) {
-        case ADD_COST:
-            const costs = [...state, action.cost];
-            localStorage.setItem("costs", JSON.stringify(costs));
-            return costs;
+        case ADD_COST_SUCCESS:
+            return [...costs, action.result];
+        case GET_COSTS_SUCCESS:
+            return [...action.result];
+        case REM_COST_SUCCESS:
+            return costs.filter(c => c.id !== action.result.id);
         default:
-            return state;
+            return costs;
     }
 }
 

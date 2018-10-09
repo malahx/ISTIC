@@ -1,0 +1,23 @@
+
+.icon-spin4:before {
+    content: '\e834';
+} /* '' */
+.icon-trash:before {
+    content: '\f1f8';
+} /* '' */
+.icon-trash {
+    font-family: 'fontello', serif;
+    color: red;
+    cursor: pointer;
+}
+@font-face {
+    font-family: 'fontello';
+    src: url('fontello.eot?72641554');
+    src: url('fontello.eot?72641554#iefix') format('embedded-opentype'),
+    url('fontello.woff2?72641554') format('woff2'),
+    url('fontello.woff?72641554') format('woff'),
+    url('fontello.ttf?72641554') format('truetype'),
+    url('fontello.svg?72641554#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

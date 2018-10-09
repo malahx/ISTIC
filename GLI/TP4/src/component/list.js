@@ -1,18 +1,18 @@
 import React, {Component} from "react";
-import MyRow from './row';
+import Rows from './rows';
 import Add from "./add";
 import Footer from "./footer";
 
-export default class MyList extends Component {
+export default class List extends Component {
 
     render() {
-        const {users, costs, addCost} = this.props;
+        const {users, costs} = this.props;
         return (
             <div className="full">
                 <ul className="full scroll">
-                    <MyRow costs={costs}/>
+                    <Rows costs={costs}/>
                 </ul>
-                <Add users={users} addCost={addCost}/>
+                <Add users={users}/>
                 <Footer costs={costs}/>
             </div>
         );

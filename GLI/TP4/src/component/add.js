@@ -1,6 +1,16 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
+import {addCost} from "../reduce/storeAction";
 
-export default class Add extends Component {
+class Add extends Component {
+
+    static mapDispatchToProps(dispatch) {
+        return {
+            handleAddCost: (paidBy, title, amount) => {
+                dispatch(addCost(paidBy, title, amount))
+            }
+        }
+    }
 
     constructor(props) {
         super(props);
@@ -14,7 +24,7 @@ export default class Add extends Component {
 
     handleClick = () => {
         const {paidBy, title, amount} = this.state;
-        this.props.addCost({paidBy, title, amount});
+        this.props.handleAddCost(paidBy, title, amount);
     };
 
     handleChangeTitle = (e) => {
@@ -45,3 +55,5 @@ export default class Add extends Component {
         );
     }
 }
+
+export default connect(null, Add.mapDispatchToProps)(Add);

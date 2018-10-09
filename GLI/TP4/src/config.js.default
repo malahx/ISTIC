@@ -1,0 +1,7 @@
+export const config = {
+    applicationId: "your-app-id",
+    javaScriptKey: "your-js-key",
+    serverURL: "your-server-url",
+    prefix: "your-personal-prefix",
+    clean: false
+}

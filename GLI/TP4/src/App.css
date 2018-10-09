@@ -76,6 +76,10 @@ ul > li {
     width: 100%;
 }
 
+ul > li:hover {
+    background-color: beige;
+}
+
 ul > li > span {
     margin-right: 1em;
     margin-left: 1em;
