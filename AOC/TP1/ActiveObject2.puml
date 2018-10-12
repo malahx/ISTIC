@@ -1,0 +1,34 @@
+@startuml
+box "Scheduler"
+participant "s : Scheduler" as s
+end box
+box "Active Object"
+    participant "aq : ActiveQueue" as aq
+end box
+box "Method Invocation"
+participant "mi : MethodInvoc" as mi
+end box
+box "Servant"
+    participant "m: Monitor" as m
+end box
+box "Future"
+    participant "f : Future" as f
+end box
+activate m
+activate s
+s -> aq: get()
+activate aq
+aq --> s: mi
+deactivate aq
+s -> mi: call()
+activate mi
+mi -> m: update(g)
+== Go to 2nd Activate Object ==
+deactivate mi
+m --> mi
+activate mi
+mi --> s
+deactivate mi
+s -> f: setDone()
+activate f
+@enduml
