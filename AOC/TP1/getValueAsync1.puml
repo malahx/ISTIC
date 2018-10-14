@@ -1,0 +1,38 @@
+@startuml
+box "Active Object"
+    participant "aq : ActiveQueue" as aq
+end box
+box "Scheduler"
+participant "s : Scheduler" as s
+end box
+box "Proxy"
+    participant "c: canal" as c
+end box
+box "Service"
+    participant "ga : GeneratorAsync" as ga
+end box
+box "Client"
+    participant "m : Monitor" as m
+end box
+
+activate m
+activate c
+activate s
+activate ga
+m -> ga: getValue(m)
+deactivate m
+create "mi : MethodInvoc" as mi
+ga -> mi: create()
+ga -> c: getValue(mi)
+c -> s: schedule(mi)
+s -> aq: add(mi)
+activate aq
+aq --> s
+deactivate aq
+create "f : Future" as f
+s -> f: create()
+s --> c: f
+c --> ga: f
+ga --> m: f
+activate m
+@enduml
