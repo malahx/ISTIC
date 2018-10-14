@@ -31,4 +31,5 @@ mi --> s
 deactivate mi
 s -> f: setDone()
 activate f
+deactivate f
 @enduml
