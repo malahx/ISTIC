@@ -29,7 +29,7 @@ s -> aq: add(mi)
 activate aq
 aq --> s
 deactivate aq
-create "f : Future" as f
+create "f : ValueFuture" as f
 s -> f: create()
 s --> c: f
 c --> ga: f

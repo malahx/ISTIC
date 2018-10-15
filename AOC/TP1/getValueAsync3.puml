@@ -18,4 +18,10 @@ s -> f: setDone()
 f --> m
 deactivate f
 activate m
+m -> f: getValue()
+deactivate m
+activate f
+f --> m: v
+deactivate f
+activate m
 @enduml

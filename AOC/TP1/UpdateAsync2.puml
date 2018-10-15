@@ -23,7 +23,7 @@ deactivate aq
 s -> mi: call()
 activate mi
 mi -> m: update(g)
-== Go to 2nd Activate Object ==
+== Go to getValueAsync1 ==
 deactivate mi
 m --> mi
 activate mi
