@@ -2,7 +2,7 @@
 box "Scheduler"
 participant "s : Scheduler" as s
 end box
-box "Active Object"
+box "Active Queue"
     participant "aq : ActiveQueue" as aq
 end box
 box "Method Invocation"

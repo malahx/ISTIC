@@ -9,7 +9,7 @@ end box
 box "Method Invocation"
     participant "mi : GetValueMI" as mi
 end box
-box "Active Object"
+box "Active Queue"
     participant "aq : ActiveQueue" as aq
 end box
 box "Scheduler"
