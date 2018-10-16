@@ -6,7 +6,7 @@ box "Active Object"
     participant "aq : ActiveQueue" as aq
 end box
 box "Method Invocation"
-participant "mi : MethodInvoc" as mi
+participant "mi : UpdateMI" as mi
 end box
 box "Servant"
     participant "m: Monitor" as m

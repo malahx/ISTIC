@@ -3,9 +3,6 @@ box "Client"
     participant "g : Generator" as g
     participant "d : Diffusion" as d
 end box
-box "Service"
-    participant "oga : ObsGeneratorAsync" as oga
-end box
 box "Proxy"
     participant "c: canal" as c
 end box
@@ -19,16 +16,14 @@ end box
 activate g
 activate c
 activate s
-activate oga
 g -> g: setValue(v)
 g -> d: execute(g)
 deactivate g
 activate d
-d -> oga: update(g)
+d -> c: update(g)
 deactivate d
-create "mi : MethodInvoc" as mi
-oga -> mi: create()
-oga -> c: update(mi)
+create "mi : UpdateMI" as mi
+c -> mi: create()
 c -> s: schedule(mi)
 s -> aq: add(mi)
 activate aq
@@ -37,8 +32,7 @@ deactivate aq
 create "f : Future" as f
 s -> f: create()
 s --> c: f
-c --> oga: f
-oga --> d: f
+c --> d: f
 activate d
 d --> g: f
 deactivate d

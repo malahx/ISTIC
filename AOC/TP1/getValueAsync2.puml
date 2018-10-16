@@ -7,7 +7,7 @@ box "Servant"
     participant "g: Generator" as g
 end box
 box "Method Invocation"
-    participant "mi : MethodInvoc" as mi
+    participant "mi : GetValueMI" as mi
 end box
 box "Active Object"
     participant "aq : ActiveQueue" as aq
@@ -28,19 +28,16 @@ deactivate mi
 g -> d: getValue(m)
 deactivate g
 activate d
-d -> f: set(v)
-deactivate d
-activate f
-f --> d
-deactivate f
-activate d
-d --> g
+d --> g: v
 deactivate d
 activate g
-g --> mi
+g --> mi: v
 activate mi
-mi --> s
+mi --> s: v
 deactivate mi
+s -> f: set(v)
+activate f
+deactivate f
 s -> f: setDone()
 activate f
 deactivate f

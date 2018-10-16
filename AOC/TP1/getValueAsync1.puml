@@ -8,9 +8,6 @@ end box
 box "Proxy"
     participant "c: canal" as c
 end box
-box "Service"
-    participant "ga : GeneratorAsync" as ga
-end box
 box "Client"
     participant "m : Monitor" as m
 end box
@@ -18,12 +15,10 @@ end box
 activate m
 activate c
 activate s
-activate ga
-m -> ga: getValue(m)
+m -> c: getValue(m)
 deactivate m
-create "mi : MethodInvoc" as mi
-ga -> mi: create()
-ga -> c: getValue(mi)
+create "mi : GetValueMI" as mi
+c -> mi: create()
 c -> s: schedule(mi)
 s -> aq: add(mi)
 activate aq
@@ -32,7 +27,6 @@ deactivate aq
 create "f : Future" as f
 s -> f: create()
 s --> c: f
-c --> ga: f
-ga --> m: f
+c --> m: f
 activate m
 @enduml
