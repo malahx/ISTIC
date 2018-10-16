@@ -1,4 +1,4 @@
-# Active Object
+# M2 : Default Active Object
 
 ## Update
 
