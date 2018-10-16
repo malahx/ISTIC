@@ -1,6 +1,6 @@
 @startuml
 box "Future"
-    participant "f : ValueFuture" as f
+    participant "f : Future" as f
 end box
 box "Servant"
     participant "d: Diffusion" as d
@@ -28,7 +28,7 @@ deactivate mi
 g -> d: getValue(m)
 deactivate g
 activate d
-d -> f: setValue(v)
+d -> f: set(v)
 deactivate d
 activate f
 f --> d

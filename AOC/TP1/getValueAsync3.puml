@@ -18,7 +18,7 @@ s -> f: setDone()
 f --> m
 deactivate f
 activate m
-m -> f: getValue()
+m -> f: get()
 deactivate m
 activate f
 f --> m: v
