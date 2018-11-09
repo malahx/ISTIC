@@ -9,6 +9,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -32,11 +33,15 @@ public class Authors {
 //            System.out.println(new String(value.getBytes()));
             /* Open a Java scanner object to parse the line */
             Scanner line = new Scanner(value.toString());
-            line.useDelimiter("\t");
+            line.useDelimiter("\n");
             String next = line.next();
-            if (next.contains("David Gross-Amblard")) {
-                author.set(next);
-                context.write(author, one);
+            String[] split = next.split("\t");
+            if (split.length >= 1) {
+                String s = split[1];
+                for (String m : s.split(" ")) {
+                    author.set(m);
+                    context.write(author, one);
+                }
             }
         }
     }
