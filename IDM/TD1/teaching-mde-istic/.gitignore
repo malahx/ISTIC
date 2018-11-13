@@ -1,0 +1,6 @@
+bin/
+xtend-gen/
+*._trace
+.settings/
+.metadata/
+

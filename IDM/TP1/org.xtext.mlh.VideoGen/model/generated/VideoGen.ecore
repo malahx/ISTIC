@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="videoGen" nsURI="http://www.xtext.org/mlh/VideoGen" nsPrefix="videoGen">
+  <eClassifiers xsi:type="ecore:EClass" name="VideoGen">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="videos" upperBound="-1"
+        eType="#//VideoType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VideoType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Mandatory" eSuperTypes="#//VideoType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="videoseq" eType="#//VideoSeq"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Optional" eSuperTypes="#//VideoType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="videoseq" eType="#//VideoSeq"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Alternatives" eSuperTypes="#//VideoType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="videoseqs" upperBound="-1"
+        eType="#//VideoSeq" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VideoSeq">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description" eType="#//Description"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="duration" eType="#//Duration"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="display_stats" eType="#//Display_stats"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Description">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Duration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Display_stats">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="display_stats" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+</ecore:EPackage>

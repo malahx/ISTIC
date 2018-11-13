@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Prettyprint
+Bundle-SymbolicName: fr.istic.idm.spreadsheet.prettyprint
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro,
+ org.eclipse.emf.ecore.xmi
+

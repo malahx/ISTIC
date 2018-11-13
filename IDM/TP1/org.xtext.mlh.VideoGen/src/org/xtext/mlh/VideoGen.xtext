@@ -1,0 +1,35 @@
+grammar org.xtext.mlh.VideoGen with org.eclipse.xtext.common.Terminals
+
+generate videoGen "http://www.xtext.org/mlh/VideoGen"
+
+VideoGen:
+	{VideoGen} 'VideoGen' '{' videos+=VideoType* '}';
+
+VideoType:
+	(Mandatory | Optional | Alternatives);
+
+Mandatory:
+	'mandatory' videoseq=VideoSeq;
+
+Optional:
+	'optional' videoseq=VideoSeq;
+
+Alternatives:
+	'alternatives' id=ID '{' videoseqs+=VideoSeq+ '}';
+
+VideoSeq:
+	'videoSeq' vid=ID? '{'
+	url=STRING
+	description=Description?
+	duration=Duration?
+	display_stats=Display_stats?
+	'}';
+
+Description:
+	{Description} 'description=' description=STRING?;
+
+Duration:
+	{Duration} 'duration=' duration=INT?;
+
+Display_stats:
+	{Display_stats} 'display_stats=' display_stats=INT?;

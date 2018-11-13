@@ -1,0 +1,11 @@
+VideoGenerator: videos+=VideoType+;
+    
+VideoType: (Mandatory | Optional | Alternatives);
+
+Mandatory: 'mandatory' videoseq=VideoSeq;
+    
+Optional: 'optional' videoseq=VideoSeq;
+    
+Alternatives: 'alternatives' id=ID '{' videoseqs+=VideoSeq+ '}';
+    
+VideoSeq: 'videoseq' vid=ID url=STRING;
