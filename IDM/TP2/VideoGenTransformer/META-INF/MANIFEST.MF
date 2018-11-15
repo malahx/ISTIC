@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: VideoGenTransformer
+Bundle-SymbolicName: VideoGenTransformer
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro,
+ org.junit;bundle-version="4.12.0",
+ org.eclipse.emf.ecore;bundle-version="2.12.0",
+ fr.istic.videogen;bundle-version="1.0.0",
+ fr.istic.videogen.ide;bundle-version="1.0.0",
+ fr.istic.videogen.tests;bundle-version="1.0.0",
+ fr.istic.videogen.ui;bundle-version="1.0.0"
+
