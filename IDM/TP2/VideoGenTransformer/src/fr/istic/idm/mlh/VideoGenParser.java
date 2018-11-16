@@ -39,7 +39,6 @@ public class VideoGenParser {
 	}
 	
 	private void parseMediaDescriptions(List<MediaDescription> mediaDescriptions) {
-		System.out.println(mediaDescriptions.get(new Random() * mediaDescriptions.size()).getLocation())
 		mediaDescriptions.forEach(m -> System.out.println(m.getLocation()));
 	}
 }

@@ -1,0 +1,25 @@
+@startuml
+
+interface "PartType" as p {
+    +getName(): String
+}
+interface "Category" as c {
+    +getName(): String
+}
+
+interface "Configurator" as ctor {
+    +getCategories(): Category[0..*]
+    +getPartTypes(c: Category): PartType[0..*]
+    +getConfiguration(): Configuration
+    +addCategory(c: Category): Configurator
+    +addPartType(p: PartType): Configurator
+}
+interface "Configuration" as ction {
+    +selectPartType(p: PartType): Configuration
+    +getSelectionForCategory(c: Category): PartType
+}
+
+p "0..*" -- "1" c
+ctor "1" -- "1" ction
+
+@enduml

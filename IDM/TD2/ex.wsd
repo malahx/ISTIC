@@ -1,0 +1,41 @@
+@startuml
+abstract class "NamedClass" as nc {
+    id: Long
+    name: String
+}
+class "Vehicle" as v {
+    
+}
+class "Category" as cat {
+
+}
+class "ElemType" as e {
+
+}
+v --> "0..*" cat
+cat --> "0..*" e
+e -- "0..* incomp" e
+nc <|-- v
+nc <|-- cat
+nc <|-- e
+newpage
+abstract class "NamedClass" as nc {
+    id: Long
+    name: String
+}
+class "Vehicle" as v {
+    
+}
+class "Category" as cat {
+
+}
+class "ElemType" as e {
+
+}
+v --> "0..*" e
+cat --> "0..*" e
+e -- "0..* incomp" e
+nc <|-- v
+nc <|-- cat
+nc <|-- e
+@enduml
