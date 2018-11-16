@@ -1,0 +1,103 @@
+@startuml
+'storage "Visitor" as v {
+'}
+'interface vab as "Visitable"
+'class d as "Document"
+'class s as "Section"
+'class t as "Titre"
+'class p as "Paragraphe"
+'interface vor as "Visiteur"
+'class gh as "GeneHTML"
+'class gt as "GeneTdM"
+'
+'v .. vab: element
+'v .. vor: visitor
+'
+'vab <|.. d
+'vab <|.. s
+'vab <|.. t
+'vab <|.. p
+'d "1" -- "*" s
+'s -- "1" t
+'s -- "*" p
+'p "0..1" -- "*" s
+'
+'vor <|.. gh
+'vor <|.. gt
+
+'SOLUTION 1: Strategy sur le parcours
+'storage "Strategy" as st {
+'}
+'
+'interface ist as "IteratorVisitable" {
+'    +next()
+'}
+'
+'class cst as "ConcreteStrategy" {
+'    +next()
+'}
+'
+'st .. vor: context
+'st .. ist: strategy
+'st .. cst: concrete\nstrategy
+'ist <|.. cst
+
+'SOLUTION 2: Strategy sur le visiteur
+'storage "Strategy" as st {
+'}
+'
+'interface ist as "IteratorVisitable" {
+'    +next()
+'}
+'
+'class cst as "ConcreteIterator" {
+'    +next()
+'}
+'
+'st .. vor: strategy
+'st .. ist: client
+'st .. vab: context
+'ist <|.. cst
+
+'SOLUTION 3: TemplateMethod
+
+storage "Visitor" as v {
+}
+interface vab as "Visitable"
+class d as "Document"
+class s as "Section"
+class t as "Titre"
+class p as "Paragraphe"
+interface vor as "Visiteur"
+abstract class gh as "GeneHTML" {
+    +{abstract} next()
+}
+abstract class gt as "GeneTdM"
+
+v .. vab: element
+v .. vor: visitor
+
+vab <|.. d
+vab <|.. s
+vab <|.. t
+vab <|.. p
+d "1" -- "*" s
+s -- "1" t
+s -- "*" p
+p "0..1" -- "*" s
+
+vor <|.. gh
+vor <|.. gt
+
+storage "TemplateMethod" as mt {
+}
+
+class "GeneProfondeurDabord" as gpd {
+    +next()
+    +prune()
+}
+gh <|-- gpd
+gh .. mt: AbstractClass
+gt .. mt: AbstractClass
+gpd .. mt: ConcreteClass
+@enduml
