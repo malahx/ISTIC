@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.txtLastName)
     protected TextView txtLastName;
+
     private View mnuReset;
 
 
@@ -38,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
-        mnuReset = findViewById(R.id.mnuReset);
-        mnuReset.setOnClickListener(view -> reset());
+//        mnuReset = findViewById(R.id.mnuReset);
+//        mnuReset.setOnClickListener(view -> reset());
         return true;
     }
 
