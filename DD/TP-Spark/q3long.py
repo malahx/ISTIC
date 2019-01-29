@@ -38,8 +38,6 @@ try:
         .map(lambda t: (t[1], t[0])) \
         .sortByKey(ascending=False)
 
-    # .filter(lambda t: len(t) > 0)
-    # .map(lambda s: (s, 1)).reduceByKey(lambda a, b: a + b).filter(lambda s: s[1] > 1)
     collect = word_counts.collect()
     for i in range(0,9):
         print(collect[i])
