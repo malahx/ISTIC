@@ -1,4 +1,3 @@
-**.project
 **.classpath
 Projects/
 istic.ics
@@ -7,3 +6,5 @@ ANG/*
 Cours/
 runtime-EclipseXtext/
 TLC/
+*/bin*
+*/.recommenders/*
