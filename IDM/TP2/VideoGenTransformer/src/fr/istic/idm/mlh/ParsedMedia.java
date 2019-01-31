@@ -4,6 +4,7 @@ public class ParsedMedia {
 	
 	private String name;
 	private boolean active;
+	private String type;
 	
 	public String getName() {
 		return name;
@@ -17,5 +18,10 @@ public class ParsedMedia {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}	
 }

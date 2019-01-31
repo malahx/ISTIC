@@ -11,4 +11,6 @@ VideoGen {
 		videoseq v42 "v42.mp4"
 	}
 	mandatory videoseq v5 "v5.mp4"
+	optional videoseq v6 "v6.mp4"
+	optional videoseq v6 "v6.mp4"
 }
