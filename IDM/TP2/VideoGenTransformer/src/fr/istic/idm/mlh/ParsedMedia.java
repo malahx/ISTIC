@@ -5,6 +5,7 @@ public class ParsedMedia {
 	private String name;
 	private boolean active;
 	private String type;
+	private int totalAlternative;
 	
 	public String getName() {
 		return name;
@@ -23,5 +24,11 @@ public class ParsedMedia {
 	}
 	public void setType(String type) {
 		this.type = type;
-	}	
+	}
+	public int getTotalAlternative() {
+		return totalAlternative;
+	}
+	public void setTotalAlternative(int totalAlternative) {
+		this.totalAlternative = totalAlternative;
+	}
 }

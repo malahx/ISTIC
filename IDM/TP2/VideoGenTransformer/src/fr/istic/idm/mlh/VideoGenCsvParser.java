@@ -30,9 +30,9 @@ public class VideoGenCsvParser {
 		List<OptionalMedia> optionals = videoGeneratorModel.getMedias().stream().filter(m -> m instanceof OptionalMedia)
 				.map(m -> (OptionalMedia) m).collect(Collectors.toList());
 		int alternatives = alternativesMedias.size();
+		int totalAlternatives = alternativesMedias.stream().map(m -> m.getMedias().size()).reduce((i1, i2) -> i1 + i2).orElse(0);
 		int totalOptionals = optionals.size() * 2;
-		int occurence = totalOptionals
-				* alternativesMedias.stream().map(m -> m.getMedias().size()).reduce((i1, i2) -> i1 + i2).orElse(0) + 1;
+		int occurence = totalOptionals * totalAlternatives + 1;
 
 		for (int i = 0; i <= occurence; i++) {
 			ParsedMediaList parsedMediaList = new ParsedMediaList();
@@ -41,14 +41,24 @@ public class VideoGenCsvParser {
 			}
 			parsedMediaLists.add(parsedMediaList);
 		}
-
-		for (int i = 0; i < optionals.size(); i++) {
-			for (int j = 0; j < parsedMediaLists.size(); j++) {
+		double totalOptionalFactor = Math.pow(2, totalOptionals);
+		for (int i = 0; i < totalOptionals; i++) {
+			double diff = Math.pow(2, (i + 1));
+			for (int j = 0; j < occurence; j++) {
 				ParsedMediaList parsedMediaList = parsedMediaLists.get(j); // voir nb d'elements
-				if (j % ((i + 1) * 2)) > Math.pow(i, 2)) {
+				if (j % diff >= diff / 2) {
 					List<ParsedMedia> parsedMedias = parsedMediaList.getParsedMedias().stream()
-							.filter(m -> m.getType().equals("OptionalMedia")).collect(Collectors.toList());
+							.filter(m -> "OptionalMedia".equals(m.getType())).collect(Collectors.toList());
 					parsedMedias.get(i).setActive(true);
+				}
+				for (int k = 0; k < totalAlternatives; k++) {
+					List<ParsedMedia> parsedMedias = parsedMediaList.getParsedMedias().stream()
+							.filter(m -> "AlternativesMedia".equals(m.getType())).collect(Collectors.toList());
+					ParsedMedia parsedMedia = parsedMedias.get(k);
+					double altFactor = totalOptionalFactor * Math.pow(parsedMedia.getTotalAlternative(), k + 1);
+					if (j % altFactor >= altFactor / parsedMedia.getTotalAlternative()) {
+						parsedMedia.setActive(true);
+					}
 				}
 			}
 		}
@@ -76,12 +86,15 @@ public class VideoGenCsvParser {
 		}
 		if (m instanceof AlternativesMedia) {
 			AlternativesMedia alternativesMedia = (AlternativesMedia) m;
+			int totalAlternative = alternativesMedia.getMedias().size();
 			for (MediaDescription media : alternativesMedia.getMedias()) {
 				ParsedMedia parsedMedia = new ParsedMedia();
 				parsedMedia.setActive(false);
 				parsedMedia.setName(media.getLocation());
 				parsedMedia.setType("AlternativesMedia");
+				parsedMedia.setTotalAlternative(totalAlternative);
 				parsedMedias.add(parsedMedia);
+				
 			}
 		}
 		return parsedMedias;
